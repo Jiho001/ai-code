@@ -20,6 +20,19 @@ def write_file(path: str, b64_data: str):
         f.write(base64.b64decode(b64_data))
         
     return {"status": "ok", "save_path": abs_path}
+    
+@mcp.tool
+def write_text_file(path: str, text: str):
+    """
+    텍스트 파일을 path에 저장
+    """
+    abs_path = os.path.join(BASE_DIR, path)
+    os.makedirs(os.paht.dirname(abs_path), exist_ok=True)
+    
+    with open(abs_path, "w", encoding="utf-8") as f:
+        f.write(text)
+
+    return {"status": "ok", "save_path": abs_path}
 
 @mcp.tool
 def read_file(path: str):
