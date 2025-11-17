@@ -20,7 +20,7 @@ async def request_design_img(user_req: str):
     """
     사용자 요구사항(user_req)을 기반으로 gpt-image-1 모델에 웹 디자인 이미지를 생성시키고,
     fastMCP Client를 이용해 MCP 서버의 write_file로 저장한 후
-    저장된 파일 경로를 문자열로 반환합니다.
+    저장된 파일 경로를 문자열로 반환
     """
     
     # ---------- OpenAI API 호출 ----------- #
@@ -34,6 +34,7 @@ async def request_design_img(user_req: str):
         {user_req}
         """
     
+    print("🍊🍊🍊 디자인 요청 시작 🍊🍊🍊")
     response = openai_client.images.generate(
         model=MODEL,
         prompt=prompt,
@@ -41,8 +42,10 @@ async def request_design_img(user_req: str):
         n=1
     )
     
+    print(f"‼️ user_req = {user_req}")
+        
     img_b64 = response.data[0].b64_json
-    img_bytes = base64.b64encode(img_b64)
+    img_bytes = img_b64
     
     # ------------ FastMCP Client로 write_file 호출 ----------- #
     mcp_client = Client(MCP_SERVER_URL)
@@ -58,5 +61,7 @@ async def request_design_img(user_req: str):
                 "b64_data": img_bytes
             }
         )
+    
+    print("🍊🍊🍊 디자인 png 저장완료 🍊🍊🍊")
 
     return save_path

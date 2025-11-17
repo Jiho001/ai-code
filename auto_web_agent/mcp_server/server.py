@@ -14,7 +14,7 @@ def write_file(path: str, b64_data: str):
     base64 인코딩된 바이너리를 받아 파일로 저장
     """
     abs_path = os.path.join(BASE_DIR, path)
-    os.makedirs(os.paht.dirname(abs_path), exist_ok=True)
+    os.makedirs(os.path.dirname(abs_path), exist_ok=True)
     
     with open(abs_path, "wb") as f:
         f.write(base64.b64decode(b64_data))
@@ -27,7 +27,7 @@ def write_text_file(path: str, text: str):
     텍스트 파일을 path에 저장
     """
     abs_path = os.path.join(BASE_DIR, path)
-    os.makedirs(os.paht.dirname(abs_path), exist_ok=True)
+    os.makedirs(os.path.dirname(abs_path), exist_ok=True)
     
     with open(abs_path, "w", encoding="utf-8") as f:
         f.write(text)

@@ -48,6 +48,7 @@ async def request_code(png_path: str):
         이미지 분석 후 바로 코드만 출력하세요.
         """
         
+        print("🍎🍎🍎 코드 생성 시작 🍎🍎🍎")
         response = openai_client.responses.create(
             model=MODEL,
             input=[
@@ -75,4 +76,5 @@ async def request_code(png_path: str):
             {"path": save_path, "text": code}
         )
 
+        print("🍎🍎🍎 코드 생성 완료 🍎🍎🍎")
     return save_path
